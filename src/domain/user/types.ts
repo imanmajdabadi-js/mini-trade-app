@@ -1,10 +1,15 @@
+export interface Position {
+  symbol: string;
+  quantity: number;
+}
+
 export interface Account {
   accountId: string;
   accountNumber: string;
   accountHolderName: string;
   balance: number;
   userId: string;
-  positions?: string[];
+  positions?: Position[];
   orders?: string[];
 }
 

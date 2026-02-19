@@ -1,23 +1,18 @@
-import { useState } from 'react';
 import { useUser } from '../user/useUser';
 
 interface PositionsProps {
-  symbol: string;
-  quantity: number;
-}
-
-interface PositionsProps {
   userId: string;
+  selectedAccountId: string | undefined;
 }
-const Positions = ({ userId }: PositionsProps) => {
-  const [positions, setPositions] = useState<PositionsProps[]>([]);
-  const { user } = useUser(userId);
 
+const Positions = ({ userId, selectedAccountId }: PositionsProps) => {
+  const { user } = useUser(userId);
+  const selectedAccount = user?.accounts.find((account) => account.accountId === selectedAccountId);
   return (
     <div>
-      {positions.map((item) => {
+      {selectedAccount?.positions?.map((item) => {
         return (
-          <div>
+          <div key={item.symbol}>
             <p>{item.symbol}</p>
             <p>{item.quantity}</p>
           </div>
