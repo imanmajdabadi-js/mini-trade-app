@@ -1,5 +1,4 @@
-import type { OrderSide, OrderState } from "../domain/order/order.types";
-
+import type { OrderSide, OrderState } from '../domain/order/order.types';
 
 export interface Position {
   symbol: string;

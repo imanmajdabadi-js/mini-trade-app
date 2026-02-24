@@ -1,6 +1,5 @@
 import SideBar from './components/Sidebar';
 import AccountPage from './domain/account/accountPage';
-import OrderPage from './domain/order';
 import Stock from './domain/stock';
 import UserPage from './domain/user';
 
@@ -12,9 +11,7 @@ function App() {
         <main className="flex-1 bg-gray-200 p-4">
           <UserPage />
           <AccountPage />
-          <div className="bg-red-800">
-            <OrderPage />
-          </div>
+
           <Stock />
         </main>
         <footer className="bg-indigo-500 p-2 w-full text-white">footer</footer>

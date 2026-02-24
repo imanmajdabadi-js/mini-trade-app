@@ -3,6 +3,18 @@ export interface Position {
   quantity: number;
 }
 
+interface Order {
+  orderId: string;
+  accountId: string;
+  symbol: string;
+  quantity: number;
+  side: string;
+  status: string;
+  createdAtUtc: string;
+  executedAtUtc: string;
+  cancelledAtUtc: string;
+}
+
 export interface Account {
   accountId: string;
   accountNumber: string;
@@ -10,7 +22,7 @@ export interface Account {
   balance: number;
   userId: string;
   positions?: Position[];
-  orders?: string[];
+  orders?: Order[];
 }
 
 export interface User {

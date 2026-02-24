@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import OrderPage from '../order';
 import type { Account } from '../user/types';
 import AccountDropdown from './accountDropdown';
 import Positions from './positions';
@@ -19,6 +20,8 @@ const AccountPage = () => {
         selectedAccountId={selectedAccount?.accountId}
         userId="431de787-de7f-43dd-b36b-063fa60d9f31"
       />
+
+      <OrderPage />
     </>
   );
 };
