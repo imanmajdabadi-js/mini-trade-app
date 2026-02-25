@@ -1,5 +1,3 @@
-import type { OrderSide, OrderState } from '../domain/order/order.types';
-
 export interface Position {
   symbol: string;
   quantity: number;
@@ -7,22 +5,54 @@ export interface Position {
   accountId: string;
 }
 
-export interface Account {
-  id: string;
-  balance: number;
-  availableBalance: number;
-  position: Position;
-  reservedBalance: number;
-  positions: Position[];
+export interface Stock {
+  symbol: string;
+  name: string;
+  currentPrice: number;
 }
+
+type OrderSide = 'Buy' | 'Sell';
+
 export interface AccountHistoryEntry {
   orderId: string;
   accountId: string;
   stockId: string;
   side: OrderSide;
-  state: OrderState;
+  state: string;
   quantity: number;
   price: number;
   timestamp: Date;
   note?: string;
+}
+
+export interface Position {
+  symbol: string;
+  quantity: number;
+}
+
+interface Order {
+  orderId: string;
+  accountId: string;
+  symbol: string;
+  quantity: number;
+  side: string;
+  status: string;
+  createdAtUtc: string;
+  executedAtUtc: string;
+  cancelledAtUtc: string;
+}
+
+export interface Account {
+  accountId: string;
+  accountNumber: string;
+  accountHolderName: string;
+  balance: number;
+  userId: string;
+  positions?: Position[];
+  orders?: Order[];
+}
+
+export interface User {
+  userId: string;
+  accounts: Account[];
 }

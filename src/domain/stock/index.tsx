@@ -1,9 +1,33 @@
 import { useEffect, useState } from 'react';
+import { createOrder } from '../../services/api';
+import type { Stock } from '../../types';
 import { Urls } from './api';
-import type { Stock } from './types';
 
-const StockPage = () => {
+interface Stockprops {
+  selectedAccountId: string | undefined;
+}
+
+const StockPage = ({ selectedAccountId }: Stockprops) => {
   const [stockList, setStockList] = useState<Stock[]>([]);
+  const [quantity, setQuantity] = useState<string>('');
+
+  const handleBuyStock = (stock: Stock) => {
+    if (selectedAccountId === undefined) {
+      console.log('selectedAccount is undefined');
+      return;
+    }
+    createOrder({
+      side: 'Buy',
+      symbol: stock.symbol,
+      accountId: selectedAccountId,
+      quantity: +quantity,
+    });
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setQuantity(value);
+  };
 
   useEffect(() => {
     const url = Urls.stock();
@@ -11,6 +35,7 @@ const StockPage = () => {
       .then((res) => res.json())
       .then((res) => setStockList(res));
   }, []);
+
   return (
     <div className="mt-4">
       {stockList.map((stock) => {
@@ -19,6 +44,18 @@ const StockPage = () => {
             <li>{stock.name}</li>
             <li>{stock.currentPrice}</li>
             <li>{stock.symbol}</li>
+            <button
+              onClick={() => handleBuyStock(stock)}
+              className="w-40 h-10 bg-green-200 rounded-xl"
+            >
+              buy
+            </button>
+            <input
+              className="w-40 bg-gray-50"
+              value={quantity}
+              onChange={handleChange}
+              type="text"
+            />
           </ul>
         );
       })}

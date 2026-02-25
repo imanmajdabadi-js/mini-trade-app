@@ -1,4 +1,4 @@
-import type { Account } from '../user/types';
+import type { Account } from '../../types';
 import { useUser } from '../user/useUser';
 interface AccountDropdownProps {
   userId: string;

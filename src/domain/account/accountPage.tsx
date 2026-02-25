@@ -1,13 +1,16 @@
-import { useState } from 'react';
+import type { Account } from '../../types';
 import OrderPage from '../order';
-import type { Account } from '../user/types';
 import AccountDropdown from './accountDropdown';
 import Positions from './positions';
 
-const AccountPage = () => {
-  const [selectedAccount, setSelectedAccount] = useState<Account | undefined>();
+interface AccountProps {
+  selectedAccount: Account | undefined;
+  onSelectedAccount: (account: Account | undefined) => void;
+}
+
+const AccountPage = ({ selectedAccount, onSelectedAccount }: AccountProps) => {
   const handleSelectedAccount = (account: Account | undefined) => {
-    setSelectedAccount(account);
+    onSelectedAccount(account);
   };
   return (
     <>

@@ -4,5 +4,7 @@ const baseUrl = 'http://localhost:8080';
 type UrlMap = Record<string, (...value: any[]) => string>;
 
 export const Urls: UrlMap = {
-  stock: () => `${baseUrl}/api/stock`,
+  user: (userId: string) => {
+    return `${baseUrl}/api/User/${userId}/accounts`;
+  },
 };

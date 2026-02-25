@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Urls } from '../stock/api';
-import type { User } from './types';
+import type { User } from '../../types';
+import { Urls } from '../user/api';
 
 export function useUser(userId: string) {
   const [user, setUser] = useState<User | null>(null);
