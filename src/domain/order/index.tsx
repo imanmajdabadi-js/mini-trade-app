@@ -1,9 +1,13 @@
 import OrderHistory from './orderHistory';
 
-const OrderPage = () => {
+interface OrderProps {
+  userId: string;
+  selectedAccountId: string | undefined;
+}
+const OrderPage = ({ userId, selectedAccountId }: OrderProps) => {
   return (
     <div className="bg-gray-400">
-      <OrderHistory userId="431de787-de7f-43dd-b36b-063fa60d9f31" />
+      <OrderHistory selectedAccountId={selectedAccountId} userId={userId} />
     </div>
   );
 };
